@@ -63,8 +63,8 @@ electricity_prices table (Postgres) — upserted, deduplicated history
 **1. Clone and set up the environment**
 
 ```bash
-git clone <this-repo-url>
-cd energia-precos
+git clone https://github.com/rodhipolito/electricity-prices-pt-es.git
+cd electricity-prices-pt-es
 python -m venv venv
 venv\Scripts\activate        # Windows
 pip install -r requirements.txt
@@ -102,16 +102,19 @@ python scripts/analysis.py          # print findings + regenerate charts in /cha
 
 ## Findings
 
-Based on ~3 weeks of 15-minute day-ahead data for PT and ES (June–July 2026):
+Based on ~25 days of 15-minute day-ahead data for PT and ES (June–July 2026):
 
-- **Clear hourly pattern.** Prices trough around midday (PT: ~42 EUR/MWh at 12:00, driven by solar generation) and peak in the early evening (PT: ~158 EUR/MWh at 20:00, as solar drops off and demand ramps up) — roughly a 3.7x swing within a single day.
+- **Clear hourly pattern.** Prices trough around midday (PT: ~46 EUR/MWh at 12:00, driven by solar generation) and peak in the early evening (PT: ~162 EUR/MWh at 20:00, as solar drops off and demand ramps up) — roughly a 3.5x swing within a single day.
 - **Negative prices happen, briefly.** Several days saw the daily minimum dip slightly below zero (e.g. -1.30 EUR/MWh, -0.81 EUR/MWh), consistent with midday oversupply from solar generation outstripping demand.
-- **Weekends are meaningfully cheaper.** PT weekend average price is **28.7% lower** than the weekday average (76.45 vs. 107.15 EUR/MWh), reflecting lower industrial demand.
-- **PT and ES decouple more often than you'd expect.** Despite being part of the same MIBEL coupled market, 43.2% of intervals showed a significant price gap (>10 EUR/MWh) between the two zones — concentrated on weekdays (49.1% of weekday intervals vs. 27.7% on weekends) and more frequent in the mid-afternoon (16:00–17:00, >60% of intervals), pointing to recurring interconnection congestion rather than random noise.
+- **Weekends are meaningfully cheaper.** PT weekend average price is **31.2% lower** than the weekday average (76.45 vs. 111.18 EUR/MWh), reflecting lower industrial demand.
+- **PT and ES decouple more often than you'd expect.** Despite being part of the same MIBEL coupled market, 45.2% of intervals showed a significant price gap (>10 EUR/MWh) between the two zones — concentrated on weekdays (51.1% of weekday intervals vs. 27.7% on weekends) and more frequent in the mid-afternoon (16:00–17:00, >60% of intervals), pointing to recurring interconnection congestion rather than random noise.
+- **Prices trended sharply upward over the period.** PT's daily average rose from 70.85 EUR/MWh (first 7 days) to 124.41 EUR/MWh (last 7 days) — a **+75.6%** increase, consistent with the summer heat driving up demand.
 
 ![Average electricity price by hour of day, PT vs ES](charts/chart_hourly_pattern.png)
 
 ![Portugal: weekday vs. weekend price pattern](charts/chart_weekend_vs_weekday.png)
+
+![Daily average price trend, PT vs ES](charts/chart_monthly_trend.png)
 
 Full write-up: [LINK]
 
