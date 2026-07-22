@@ -116,7 +116,7 @@ Based on ~25 days of 15-minute day-ahead data for PT and ES (June–July 2026):
 
 ![Daily average price trend, PT vs ES](charts/chart_monthly_trend.png)
 
-Full write-up: [LINK]
+Full write-up: [LinkedIn post](https://www.linkedin.com/posts/rodrigo-hipolito-silva_dataengineering-python-analytics-share-7485106026376155136-jShG)
 
 ## License
 
