@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: stg_entsoe__electricity_prices
+    description: "Staging model for ENTSO-E day-ahead prices. One row per bidding zone per 15-minute delivery period, with timestamps made explicit as UTC."
+    columns:
+      - name: price_id
+        description: "Business key: bidding zone + period start in UTC (e.g. PT_20260718T2200)."
+        data_tests:
+          - unique
+          - not_null
+      - name: bidding_zone
+        description: "ENTSO-E bidding zone code, uppercased and trimmed (PT, ES)."
+        data_tests:
+          - not_null
+      - name: period_start_utc
+        description: "Start of the delivery period, as timestamptz in UTC."
+        data_tests:
+          - not_null
+      - name: period_end_utc
+        description: "End of the delivery period, as timestamptz in UTC."
+      - name: price_eur_mwh
+        description: "Day-ahead price in EUR/MWh."
+        data_tests:
+          - not_null
+      - name: loaded_at
+        description: "Load timestamp from the ingestion pipeline. Time zone depends on where the pipeline ran."
+      - name: source_row_id
+        description: "Original id from the raw table, kept for traceability."
