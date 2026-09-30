@@ -1,0 +1,20 @@
+name: 'energia_precos'
+version: '1.0.0'
+
+profile: 'energia_precos'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  energia_precos:
+    staging:
+      +materialized: view
