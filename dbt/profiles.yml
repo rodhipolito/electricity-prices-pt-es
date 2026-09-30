@@ -1,0 +1,14 @@
+energia_precos:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: "{{ env_var('DBT_PG_HOST') }}"
+      port: 5432
+      user: "{{ env_var('DBT_PG_USER') }}"
+      password: "{{ env_var('DBT_PG_PASSWORD') }}"
+      dbname: "{{ env_var('DBT_PG_DBNAME') }}"
+      schema: "{{ env_var('DBT_PG_SCHEMA', 'dbt_dev') }}"
+      threads: 4
+      sslmode: require
+      connect_timeout: 30
